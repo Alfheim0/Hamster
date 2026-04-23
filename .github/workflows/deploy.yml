@@ -2,8 +2,7 @@ name: Build Vue and deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main  # или master, смотрите какая у вас основная ветка
+    branches: [ main ]
 
 jobs:
   build_and_deploy:
@@ -18,14 +17,17 @@ jobs:
           node-version: '18'
           
       - name: Install dependencies
-        run: npm ci
-        
+        run: |
+          cd hamster
+          npm ci
+          
       - name: Build project
-        run: npm run build
-        
+        run: |
+          cd hamster
+          npm run build
+          
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: gh-pages
+          publish_dir: ./hamster/dist
