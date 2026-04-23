@@ -16,16 +16,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Было '18', меняем на '20'
+          node-version: '22'
           
       - name: Install dependencies
-        working-directory: ./hamster
-        run: npm install
-        
+        run: |
+          cd hamster
+          npm install
+          ls -la  # Проверяем структуру
+          
       - name: Build project
-        working-directory: ./hamster
-        run: npm run build
-        
+        run: |
+          cd hamster
+          npm run build
+          
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
