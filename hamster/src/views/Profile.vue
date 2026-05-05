@@ -1,0 +1,3 @@
+<template>
+  че говоритьь
+</template>
